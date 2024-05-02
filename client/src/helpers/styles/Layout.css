@@ -1,0 +1,16 @@
+.hi{
+ color: red;
+}
+header{
+    color: red;
+    margin-left:50px;
+    position: absolute;
+    top: 0;
+   }
+.top{
+    margin-left:400px;
+} 
+.top-right{
+    margin-left:290px;
+    position: fixed;
+}

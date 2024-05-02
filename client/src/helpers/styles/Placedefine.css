@@ -1,0 +1,66 @@
+/* .top{
+    margin-top: 100px;
+}
+.photo{
+    height: 250px;
+    width: 250px;
+}
+.des{
+    display: flex;
+    background-color: rgb(226, 199, 203);
+}
+.checkp{
+    display: flex;
+    background-color: aqua;
+    color: blue;
+}
+.title1{
+    margin-top: 5%;
+}
+.t1{
+    color: brown;
+} */
+
+.place-define-container {
+ 
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+  }
+  
+  .place-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .description-section {
+    margin-bottom: 20px;
+  }
+  
+  .description-section h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .description-content {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  .check-in-out-section {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 20px;
+  }
+  
+  .extra-info-section {
+    margin-top: 20px;
+  }
+  
+  .extra-info-section h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  

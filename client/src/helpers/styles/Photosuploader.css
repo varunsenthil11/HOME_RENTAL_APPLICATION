@@ -1,0 +1,18 @@
+.icon{
+    width:30px;
+    margin-left: 170px;
+    margin-top: -190px;
+    color: white;
+}
+.star{
+     width:30px;
+    margin-top: 100px; 
+    margin-left: 8px;
+    cursor: pointer;
+    color: white;
+}
+.upload1{
+    width: 900px;
+    height: 200px;
+    background-color: aquamarine;
+}

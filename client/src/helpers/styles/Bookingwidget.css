@@ -1,0 +1,45 @@
+.booking-widget {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.price {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.booking-details {
+  margin-bottom: 10px;
+}
+
+.flex {
+  display: flex;
+  gap: 10px;
+}
+
+.check-in, .check-out, .guests, .additional-info {
+  flex: 1;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.primary-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.primary-button:hover {
+  background-color: #0056b3;
+}
