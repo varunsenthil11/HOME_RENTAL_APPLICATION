@@ -24,8 +24,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/airbnb').then(() => { console.log("c
 })
 // app.use(cors());
 
-app.use('/forgetpassword', forgetpassword);
-
 app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true,
@@ -33,7 +31,7 @@ app.use(cors({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 
-
+app.use('/forgetpassword', forgetpassword);
 
 app.post('/Register', async (req, res) => {
   console.log("received")
