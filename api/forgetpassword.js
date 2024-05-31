@@ -18,8 +18,8 @@ router.post('/sendotp',async (req,res)=>{
   const sender = nodemailer.createTransport({
       service:'gmail',
       auth:{
-          user:'abc437510@gmail.com',
-          pass:'vytd kpdi pvum pzpq'
+          user:'your mail',
+          pass:'//your mail passsword'
       }
   });
   const composemail = {
