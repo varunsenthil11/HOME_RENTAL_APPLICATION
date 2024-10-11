@@ -18,10 +18,17 @@ const salt = bcrypt.genSaltSync(6);
 const jwtsecretkey = "asjdsjsjdsdijsijdj2323111"
 const mongoose = require('mongoose')
 const users = require('./db');
-const forgetpassword = require('./forgetpassword')
+const forgetpassword = require('./forgetpassword');
+const ratelimit = require('express-rate-limit');
+const MongoStore = require('rate-limit-mongo');
+const { reset } = require('nodemon');
+
 mongoose.connect('mongodb://127.0.0.1:27017/airbnb').then(() => { console.log("connected") }).catch((e) => {
   console.log(e);
-})
+});
+const rateLimitDb = mongoose.createConnection('mongodb://127.0.0.1:27017/rate-limit-db', {
+});
+
 // app.use(cors());
 
 app.use(cors({
@@ -115,7 +122,31 @@ app.post('/getotp', async (req, res) => {
 })
 
 
+
+const mongoStoreInstance = new MongoStore({
+  uri: 'mongodb://localhost:27017/rate-limit-db',
+  collectionName: 'rateLimits',
+  expireTimeMs: 15 * 60 * 1000,
+  errorHandler: console.error
+});
+
+
+const limiter = ratelimit({
+  store: mongoStoreInstance, 
+  max: 2,                    
+  windowMs: 60 * 60 * 1000, 
+  message: "Too many attempts", 
+});
+
+
+
+
+app.post('/login',limiter);
+
 app.post('/login', async (req, res) => {
+
+ 
+  
   const { email, password } = req.body;
   const doc = await users.findOne({ email: email })
   if (doc) {
@@ -127,12 +158,21 @@ app.post('/login', async (req, res) => {
           res.cookie('token', token, { httpOnly: false });
         res.send(doc)
       })
+
+    mongoStoreInstance.resetKey(req.ip, (err) => {
+    
+    
+    if (err) {
+      console.error('Error resetting rate limit:', err);
+    }
+  });
+ 
     }
     else {
       res.status(500).json('pass not ok')
     }
   }
-  else {
+  else { 
     res.status(500).json('not found')
   }
 })
@@ -245,6 +285,13 @@ app.post('/bookings', async (req, res) => {
   const {
     place, checkIn, checkOut, numberOfGuests, name, phone, price,
   } = req.body;
+
+  if (!checkIn || !checkOut || !phone) {
+    return res.status(404).json({ 
+      message: "CheckIn, CheckOut, and Phone fields are required." 
+    });
+  }
+
   await Booking.create({
     user: userdata.id,
     place, checkIn, checkOut, numberOfGuests, name, phone, price,

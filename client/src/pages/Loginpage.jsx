@@ -22,6 +22,9 @@ export default  function Loginpage(){
    setredirect(true)
   }
   catch(e){
+    if(e.response.status==429)
+    alert("Too many attempts try again later");
+  else
    alert('login failed')
   }
 }

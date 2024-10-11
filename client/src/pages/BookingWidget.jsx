@@ -25,11 +25,16 @@ export default function BookingWidget({ place }) {
   }
 
   async function bookThisPlace() {
+    try{
     const response = await axios.post('http://localhost:4000/bookings', {
       checkIn, checkOut, numberOfGuests, name, phone,
       place: place._id,
       price: numberOfNights * place.price,
     });
+  }
+  catch{
+      alert("Booking failed not sufficient information")
+  }
     const bookingId = response.data._id;
     setRedirect(`/Accounts/bookings/${bookingId}`);
   }
@@ -37,6 +42,7 @@ export default function BookingWidget({ place }) {
   if (redirect) {
     return <Navigate to={redirect} />
   }
+  
 
   return (
     <div className="booking-widget">
