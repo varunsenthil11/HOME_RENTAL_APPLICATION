@@ -23,7 +23,7 @@ const ratelimit = require('express-rate-limit');
 const MongoStore = require('rate-limit-mongo');
 const { reset } = require('nodemon');
 
-mongoose.connect('mongodb://127.0.0.1:27017/airbnb').then(() => { console.log("connected") }).catch((e) => {
+mongoose.connect('mongodb://127.0.0.1:27017/home').then(() => { console.log("connected") }).catch((e) => {
   console.log(e);
 });
 const rateLimitDb = mongoose.createConnection('mongodb://127.0.0.1:27017/rate-limit-db', {
